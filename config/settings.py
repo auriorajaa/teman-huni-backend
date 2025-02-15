@@ -48,6 +48,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    # LOCAL APPS
+    "core_apps.users",
+    "core_apps.issues",
+    "core_apps.common",
+    "core_apps.profiles",
+    "core_apps.ratings",
+    "core_apps.posts",
     # THRID PARTY
     "rest_framework",
     "django_countries",
@@ -60,13 +67,6 @@ INSTALLED_APPS = [
     "djcelery_email",
     "cloudinary",
     "django_celery_beat",
-    # LOCAL APPS
-    "core_apps.issues",
-    "core_apps.users",
-    "core_apps.common",
-    "core_apps.profiles",
-    "core_apps.ratings",
-    "core_apps.posts",
 ]
 
 MIDDLEWARE = [
@@ -193,3 +193,5 @@ LOGGING = {
     },
     "root": {"level": "INFO", "handlers": ["console"]},
 }
+
+AUTH_USER_MODEL = "users.User"

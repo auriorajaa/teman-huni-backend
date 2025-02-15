@@ -14,9 +14,30 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Teman Huni API",
+        default_version="v1",
+        description="Teman Huni API Documentation",
+        contact=openapi.Contact(email="mr.auriorajaa@gmail.com"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+    permission_classes=[permissions.AllowAny],
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+    path("admin/", admin.site.urls),
 ]
+
+admin.site.site_header = "Teman Huni Admin"
+admin.site.site_title = "Teman Huni Admin Portal"
+admin.site.index_title = "Welcome to Teman Huni Admin Portal"
